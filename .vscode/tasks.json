@@ -2,6 +2,15 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "example-grpc | protoc",
+            "command": "protoc --go_out=plugins=grpc:. hello.proto",
+            "type": "shell",
+            "group": "build",
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
             "label": "example-grpc | build",
             "command": "go-james build -v",
             "type": "shell",
