@@ -5,7 +5,9 @@ import (
 	fmt "fmt"
 	"net"
 
+	"github.com/pieterclaerhout/go-log"
 	grpc "google.golang.org/grpc"
+	"google.golang.org/grpc/peer"
 )
 
 // Greeter ...
@@ -31,6 +33,9 @@ func (g *Greeter) Start() error {
 
 // SayHello says hello
 func (g *Greeter) SayHello(ctx context.Context, r *HelloRequest) (*HelloReply, error) {
+	p, _ := peer.FromContext(ctx)
+	log.InfoDump(p, "p")
+	log.InfoDump(r, "r")
 	return &HelloReply{
 		Message: fmt.Sprintf("Hello, %s!", r.Name),
 	}, nil
